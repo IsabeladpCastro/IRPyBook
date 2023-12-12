@@ -1,0 +1,58 @@
+body{
+    height: 95vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-container{
+    width: 700px;
+    height: 600px;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo{
+    width: 350px;
+}
+
+.logo-container{
+    border: 2px solid black;
+    width: 400px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputs-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.email-container input{
+    width: 250px;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.senha-container input{
+    width: 250px;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.icon-email{
+    width: 40px;
+    height: 30px;
+}
