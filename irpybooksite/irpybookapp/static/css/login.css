@@ -55,3 +55,11 @@ input{
     width: 250px;
     height: 30px;
 }
+
+button{
+    border: none; 
+    margin: 0;
+    background: none; 
+    padding: 0;
+}
+
