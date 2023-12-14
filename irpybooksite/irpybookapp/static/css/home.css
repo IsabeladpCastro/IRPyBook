@@ -1,0 +1,39 @@
+body{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 95vh;
+} 
+
+header{
+    display: flex;
+    border: 2px solid black;
+    width: 100%;
+    height: 100px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.main-container{
+    
+}
+
+.logo{
+    height: 100px;
+}
+
+.logo-container{
+    
+}
+
+main{
+    height: 100px;
+    width: 100%;
+    margin: 50px;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+}
