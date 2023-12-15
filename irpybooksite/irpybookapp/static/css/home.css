@@ -7,33 +7,66 @@ body{
 
 header{
     display: flex;
-    border: 2px solid black;
     width: 100%;
     height: 100px;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 }
 
-.main-container{
-    
-}
-
 .logo{
-    height: 100px;
+    height: 120px;
 }
 
 .logo-container{
-    
+    position: absolute;
+    left: 520px;
+}
+
+.perfil{
+    height: 60px;
+    width: 60px;
 }
 
 main{
-    height: 100px;
+    height: 100%;
     width: 100%;
     margin: 50px;
-    border: 2px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     gap: 30px;
+}
+ 
+.search-result{
+    height: 100px;
+    width: 600px;
+    border: 2px solid black;
+}
+
+.barraPesquisa{
+    height: 30px;
+    width: 600px;
+    background-color: rgb(211, 211, 211);
+    border: none;
+    border-radius: 10px;
+}
+
+.buttonCadastrar{
+    width: 230px;
+    height: 40px;
+    background-color: rgb(99, 255, 120);
+    border-radius: 50px;
+    margin: 0;
+    padding: 0;
+}
+
+.input-container{
+    display: flex;
+    align-items: center;
+}
+
+.input-container img{
+    width: 40px;
+    height: 30px;
 }
