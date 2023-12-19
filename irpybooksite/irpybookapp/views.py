@@ -13,3 +13,6 @@ def mainPage(request):
 
 def register(request):
     return render(request, 'register.html')
+
+def registerBook(request):
+    return render(request, 'registerBook.html')
