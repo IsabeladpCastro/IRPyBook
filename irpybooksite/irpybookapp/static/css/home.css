@@ -17,9 +17,19 @@ header{
     height: 120px;
 }
 
+.main-container{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+}
+
 .logo-container{
+    display: flex;
     position: absolute;
-    left: 520px;
+    width: 500px;
+    justify-content: center;
+    left: 475px;
 }
 
 .perfil{
