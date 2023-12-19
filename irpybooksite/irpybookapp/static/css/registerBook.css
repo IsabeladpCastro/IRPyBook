@@ -3,6 +3,7 @@ body{
     align-items: center;
     flex-direction: column;
     height: 95vh;
+    justify-content: center;
 } 
 
 header{
@@ -77,7 +78,7 @@ main{
     justify-content: center;
     align-items: center;
     gap: 20px;
-    left: 200px;
+    margin-right: 100px;
 }
 
 
@@ -91,6 +92,7 @@ main{
 .quarto-input{
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 20px;
 }
 
@@ -99,4 +101,14 @@ main{
     height: 150px;
     background-color: rgb(211, 211, 211);
     border: none;
+}
+
+button{
+    width: 230px;
+    height: 40px;
+    background-color: rgb(141, 223, 172);
+    border-radius: 50px;
+    margin-top: 30px;
+    padding: 0;
+
 }
