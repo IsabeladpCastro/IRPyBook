@@ -17,9 +17,11 @@ def login_view(request):
 
         if user is not None:
             login(request, user)
+            print(f'Sucesso ao entrar com {username}')
             return redirect('home')
         else:
             messages.error(request, 'Nome de usuario ou senha incorretos.')
+            print(f'Falha ao entrar com o {username}')
             
     return render(request, 'login.html')
         
