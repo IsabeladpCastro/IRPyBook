@@ -18,11 +18,21 @@
             <h1 class="titulo-container">Registrar</h1>
             <form action="{% url 'register' %}" method="post">
                 {% csrf_token %}
-                {{ form.as_p }}
+                <div class="input-container">
+                    <img class="icon" src="{% static 'img/perfilicon.png' %}" alt="username icon">
+                    {{ form.username }} 
+                </div>
+                <div class="input-container">
+                    <img class="icon" src="{% static 'img/senha.png' %}" alt="password icon" width="60px">
+                    {{ form.password1 }} 
+                </div>
+                <div class="input-container">
+                    <img class="icon" src="{% static 'img/verificarIcon.png' %}" alt="password icon">
+                    {{ form.password2 }}
+                </div>
                 <button type="submit">Registrar</button>
             </form>
             
-            <a href="{% url 'login' %}"><button>Login</button></a>
 
         </div>
     </div>
