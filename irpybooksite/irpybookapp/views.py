@@ -5,9 +5,6 @@ from django.contrib import messages
 from django.http import HttpResponse
 # Create your views here.
 
-def index(request):
-    return render(request, 'index.html')
-
 def login_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -24,7 +21,6 @@ def login_view(request):
             print(f'Falha ao entrar com o {username}')
             
     return render(request, 'login.html')
-        
         
 def mainPage(request):
     return render(request, 'home.html')
@@ -46,3 +42,4 @@ def register(request):
 
 def registerBook(request):
     return render(request, 'registerBook.html')
+
