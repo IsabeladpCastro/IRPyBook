@@ -43,3 +43,25 @@ def register(request):
 def registerBook(request):
     return render(request, 'registerBook.html')
 
+def search_books(query):
+    api_key = 'AIzaSyCKMi0_Tht5Svvm1_A410dSgkb-62gMCew'
+    base_url = 'https://www.googleapis.com/books/v1/volumes'
+    
+    parametros = {
+        'q': query,
+        'key': api_key, 
+    }
+    
+    response = request.get(base_url, parametros = parametros)
+    data = response.json()
+    
+    #Processamento de Resultados
+    items = data.get('items', [])
+    books = []
+    
+    for item in items:
+        book_info = {
+            'title': item['volumeInfo']['title'],
+            'authors': item['volumeInfo'].get('authors', []),
+        }
+     
