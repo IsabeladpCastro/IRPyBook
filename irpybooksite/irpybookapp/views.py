@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.http import HttpResponse
+import requests
 # Create your views here.
 
 def login_view(request):
@@ -43,25 +44,35 @@ def register(request):
 def registerBook(request):
     return render(request, 'registerBook.html')
 
-def search_books(query):
-    api_key = 'AIzaSyCKMi0_Tht5Svvm1_A410dSgkb-62gMCew'
-    base_url = 'https://www.googleapis.com/books/v1/volumes'
+#Essa função tem o objetivo de pegar os dados da API do google e armazanando na variavel livro
+def buscar_livros(titulo, chave_api):
     
-    parametros = {
-        'q': query,
-        'key': api_key, 
-    }
+    url = f"https://www.googleapis.com/books/v1/volumes?q=intitle:{titulo}&key={chave_api}"
     
-    response = request.get(base_url, parametros = parametros)
-    data = response.json()
+    response = requests.get(url)
     
-    #Processamento de Resultados
-    items = data.get('items', [])
-    books = []
-    
-    for item in items:
-        book_info = {
-            'title': item['volumeInfo']['title'],
-            'authors': item['volumeInfo'].get('authors', []),
-        }
+    if response.status_code == 200:
+        dados_livros = response.json()
+        livros = []
+        
+        if "items" in dados_livros:
+            for item in dados_livros["items"]:
+                livro_info = {
+                    'title': item['volumeInfo']['title'],
+                    'authors': item['volumeInfo'].get('authors', []),
+                    'thumbnail': item['volumeInfo'].get('imageLinks', {}).get('thumbnail', ''),
+                }
+                livros.append(livro_info)
+        return livros
+    return None
      
+def book_search(request):
+    if request.method == 'GET':
+        query = request.GET.get('query', '')
+        print(f"Query: {query}")  # Adicione esta linha para depurar
+        chave_api = 'AIzaSyCKMi0_Tht5Svvm1_A410dSgkb-62gMCew'  # Substitua pela sua chave API
+
+        if query and chave_api:
+            livros = buscar_livros(query, chave_api)
+        return render(request, 'home.html', {'books': livros, 'query': query})
+    return render(request, 'home.html', {'books': [], 'query': ''})

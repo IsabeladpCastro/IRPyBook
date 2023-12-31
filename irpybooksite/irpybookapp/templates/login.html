@@ -16,7 +16,7 @@
 
         <div class="inputs-container">
             <h1 class="titulo-container">Login</h1>
-            <form action="{% url 'login' %}" method="post">
+            <form action="{% url 'login' %}" method="post" class="form-container">
                 {% csrf_token %}
                 
                 <div class="email-container">

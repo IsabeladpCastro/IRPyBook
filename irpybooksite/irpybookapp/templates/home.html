@@ -20,12 +20,27 @@
     
     <main>
         <div class="input-container">
-            <input type="search" name="barraPesquisa" class="barraPesquisa">
-            <img src="../static/img/lupa.png" alt="lupa-pesquisa">
-        </div>
-        <input type="button" value="Cadastrar" class="buttonCadastrar">
+            <form id="searchForm" action="{% url 'book_search' %}" method="get">
+                <div class="input-container">
+                    <input type="search" name="query" class="barraPesquisa">
+                    <button type="submit"><img src="../static/img/lupa.png" alt="lupa-pesquisa"></button>
+                </div>
+            </form>  
         <div id="" class="search-result">
+            <h1>Resultado da Pesquisa "{{ query }}"</h1>
 
+            {% if books %}
+                <ul>
+                    {% for book in books %}
+                        <li>
+                            <strong>"{{ book.title }}"</strong> by "{{ book.authors |join:", " }}
+                            <img src="{{ book.thumbnail }}" alt="{{ book.title }}">
+                    {% endfor %}
+                        </li>
+                </ul>
+            {% else %}
+                <p>Nenhum Resultado Encontrado</p>
+            {% endif %}
         </div>
     </main>
 
