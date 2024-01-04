@@ -7,7 +7,7 @@ O objetivo deste projeto é desenvolver um sistema simples de catálogo de livro
 
 ## Demonstração
 
-![alt text](https://github.com/Rafazg/open-source/blob/main/preview%20project.png?raw=true)
+![alt text]( https://github.com/IsabeladpCastro/IRPyBook/blob/main/MainPage.png?raw=true)
 
 
 
