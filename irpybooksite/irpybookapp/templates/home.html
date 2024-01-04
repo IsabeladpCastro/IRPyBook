@@ -25,23 +25,25 @@
                     <input type="search" name="query" class="barraPesquisa">
                     <button type="submit"><img src="../static/img/lupa.png" alt="lupa-pesquisa"></button>
                 </div>
-            </form>  
-        <div id="" class="search-result">
-            <h1>Resultado da Pesquisa "{{ query }}"</h1>
+            </form> 
+        </div> 
+            <div id="" class="search-result">
+                <h1>Resultado da Pesquisa "{{ query }}"</h1>
 
-            {% if books %}
-                <ul>
-                    {% for book in books %}
-                        <li>
-                            <strong>"{{ book.title }}"</strong> by "{{ book.authors |join:", " }}
-                            <img src="{{ book.thumbnail }}" alt="{{ book.title }}">
-                    {% endfor %}
-                        </li>
-                </ul>
-            {% else %}
-                <p>Nenhum Resultado Encontrado</p>
-            {% endif %}
-        </div>
+                {% if books %}
+                    <ul>
+                        {% for book in books %}
+                            <li>
+                                <strong>"{{ book.title }}"</strong> by "{{ book.authors |join:", " }}
+                                <img src="{{ book.thumbnail }}" alt="{{ book.title }}">
+                        {% endfor %}
+                            </li>
+                    </ul>
+                {% else %}
+                    <p>Nenhum Resultado Encontrado</p>
+                {% endif %}
+            
+            </div>
     </main>
 
 </body>

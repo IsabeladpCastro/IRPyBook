@@ -29,7 +29,8 @@ header{
     position: absolute;
     width: 500px;
     justify-content: center;
-    left: 475px;
+    align-items: center;
+    left: 375px;
 }
 
 .perfil{
@@ -46,11 +47,12 @@ main{
     align-items: center;
     flex-direction: column;
     gap: 30px;
+    margin-top: 100px;
 }
  
 .search-result{
-    height: 100px;
-    width: 600px;
+    height: 100%;
+    width: 75%;
     border: 2px solid black;
 }
 
@@ -74,6 +76,7 @@ main{
 .input-container{
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .input-container img{
