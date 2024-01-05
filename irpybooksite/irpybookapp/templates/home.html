@@ -31,14 +31,15 @@
                 <h1>Resultado da Pesquisa "{{ query }}"</h1>
 
                 {% if books %}
-                    <ul>
+                    <div class="list-result">
                         {% for book in books %}
-                            <li>
-                                <strong>"{{ book.title }}"</strong> by "{{ book.authors |join:", " }}
-                                <img src="{{ book.thumbnail }}" alt="{{ book.title }}">
+                        <div class="item-result"> 
+                            <strong class="title-container">Titulo: </strong> "{{ book.title }}" <br>
+                            <strong class="author-container">Autor: </strong> "{{ book.authors |join:", " }} <br>
+                            <img src="{{ book.thumbnail }}" alt="{{ book.title }}">
+                        </div>
                         {% endfor %}
-                            </li>
-                    </ul>
+                    </div>     
                 {% else %}
                     <p>Nenhum Resultado Encontrado</p>
                 {% endif %}
