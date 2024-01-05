@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from .models import Livro
 
 
 
@@ -10,10 +11,12 @@ class CustomUserCreationForm(UserCreationForm):
             'password1': '',  # Define rótulo como vazio para o campo password1
             'password2': '',  # Define rótulo como vazio para o campo password2
         }
-
-class RegistrationForm(UserCreationForm):
-    email = forms.EmailField(required=True, help_text='Digite um email valido')
-    
+class LivroForm(forms.ModelForm):
     class Meta:
-        model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        model = Livro
+        fields = [
+            'titulo',
+            'autor',
+            'data',
+            'sinopse',
+    ]

@@ -43,8 +43,18 @@
                 {% else %}
                     <p>Nenhum Resultado Encontrado</p>
                 {% endif %}
-            
             </div>
+
+            <div class="register-result">
+                {% for livro in livros %}
+                <div class="item-result">
+                    <h2>{{ livro.titulo }}</h2>
+                    <p>Autor:{{ livro.autor }}</p> 
+                    <p>Data de Registro:{{ livro.data }}</p>
+                    <p>Sinopse:{{ livro.sinopse }}</p>
+            </div>
+                {% endfor %}
+
     </main>
 
 </body>

@@ -3,6 +3,8 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.http import HttpResponse
+from .forms import LivroForm
+from .models import Livro
 import requests
 # Create your views here.
 
@@ -42,7 +44,21 @@ def register(request):
     return render(request, 'register.html', {'form': form})
 
 def registerBook(request):
-    return render(request, 'registerBook.html')
+    if request.method == 'POST':
+        form = LivroForm(request.POST)
+        if form.is_valid():
+            livro = form.save()
+            print(f'Livro registrado: {livro.titulo}, {livro.autor}, {livro.data}')
+            messages.success(request, 'Livro registrado com sucesso')
+            return redirect('home')
+        else:
+            messages.error(request, 'Erro no registro do livro')
+            print('ta dando erro aqui oia', form.errors)
+    else:  
+        form = LivroForm()      
+        
+        
+    return render(request, 'registerBook.html', {'form': form})
 
 #Essa função tem o objetivo de pegar os dados da API do google e armazanando na variavel livro
 def buscar_livros(titulo, chave_api):
@@ -71,8 +87,23 @@ def book_search(request):
         query = request.GET.get('query', '')
         print(f"Query: {query}")  # Adicione esta linha para depurar
         chave_api = 'AIzaSyCKMi0_Tht5Svvm1_A410dSgkb-62gMCew'  # Substitua pela sua chave API
+        
+        livros = []
 
         if query and chave_api:
-            livros = buscar_livros(query, chave_api)
-        return render(request, 'home.html', {'books': livros, 'query': query})
-    return render(request, 'home.html', {'books': [], 'query': ''})
+            livros = buscar_livros(query, chave_api)    
+        
+        if request.method == 'POST':
+            form = LivroForm(request.POST)
+            if form.is_valid():
+                livro = form.save()
+                print(f'Livro registrado: {livro.titulo}, {livro.autor}, {livro.data}')
+                messages.success(request, 'Livro registrado com sucesso')
+            else:
+                messages.error(request, 'Erro no registro do livro')
+                print('ta dando erro aqui oia', form.errors)
+        else:
+            form = LivroForm()        
+                  
+        return render(request, 'home.html', {'books': livros, 'query': query, 'livros': Livro.objects.all(), 'form': form})
+    return render(request, 'home.html', {'books': [], 'query': '', 'livros': []})

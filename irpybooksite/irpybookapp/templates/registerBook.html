@@ -19,30 +19,36 @@
     </header>
 
     <main>
-        <div class="inputs-container">
-            <div class="primeiro-input">
-                <h3>Titulo</h3>
-                <input type="text" name="titulo" id="titulo-input">
+        <form action="{% url 'registerBook' %}" method="post">
+            {% csrf_token %}
+            <div class="inputs-container">
+                <div class="primeiro-input">
+                    <h3>Titulo</h3>
+                    {{ form.titulo }}
+                </div>
+    
+                <div class="segundo-input">
+                    <h3>Autor</h3>
+                    {{ form.autor }}
+                </div>
+    
+                <div class="terceiro-input">
+                    <h3>Data de Registro</h3>
+                    {{ form.data }}
+                </div>
+    
+                <div class="quarto-input">
+                    <h3>Sinopse</h3>
+                    {{ form.sinopse }}
+                </div>
             </div>
 
-            <div class="segundo-input">
-                <h3>Autor</h3>
-                <input type="text" name="autor" id="autor-input">
-            </div>
-
-            <div class="terceiro-input">
-                <h3>Data de Registro</h3>
-                <input type="date" name="data" id="data-input">
-            </div>
-
-            <div class="quarto-input">
-                <h3>Sinopse</h3>
-                <textarea name="" id="" cols="30" rows="10"></textarea>
-            </div>
-        </div>
+            <button type="submit">Registrar Livro</button>
+        </form>
+        
     </main>
 
-    <button>Enviar</button>
+   
 
 </body>
 </html>
