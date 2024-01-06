@@ -55,12 +55,30 @@ main{
 
  /* ========================= RESULT AREA ========================= */
 
+ .results-container{
+    overflow: scroll;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
 .search-result{
+    overflow: scroll;
     height: 100%;
-    width: 47%;
+    width: 600px;
     display: flex;
     flex-direction: column;
     text-align: center;
+    border: 10px ridge rgb(39, 39, 39);
+}
+
+.register-result{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    overflow: scroll;
+    border: 10px ridge rgb(39, 39, 39);
+    width: 600px;
+    height: 100%;
 }
 
 .list-result{

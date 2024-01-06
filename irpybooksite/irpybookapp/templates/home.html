@@ -27,6 +27,7 @@
                 </div>
             </form> 
         </div> 
+        <div class="results-container">
             <div id="" class="search-result">
                 <h1>Resultado da Pesquisa "{{ query }}"</h1>
 
@@ -46,15 +47,17 @@
             </div>
 
             <div class="register-result">
+                <h1>Livros Registrados</h1>
                 {% for livro in livros %}
                 <div class="item-result">
                     <h2>{{ livro.titulo }}</h2>
                     <p>Autor:{{ livro.autor }}</p> 
                     <p>Data de Registro:{{ livro.data }}</p>
                     <p>Sinopse:{{ livro.sinopse }}</p>
-            </div>
+                </div>
                 {% endfor %}
-
+            </div>
+        </div>   
     </main>
 
 </body>
