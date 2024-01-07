@@ -107,3 +107,4 @@ def book_search(request):
                   
         return render(request, 'home.html', {'books': livros, 'query': query, 'livros': Livro.objects.all(), 'form': form})
     return render(request, 'home.html', {'books': [], 'query': '', 'livros': []})
+
