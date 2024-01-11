@@ -54,7 +54,10 @@
                     <p>Autor:{{ livro.autor }}</p> 
                     <p>Data de Registro:{{ livro.data }}</p>
                     <p>Sinopse:{{ livro.sinopse }}</p>
-                    <button>Remover</button>
+                    <form method="post" action="{% url 'delete_book' livro.id %}">
+                        {% csrf_token %}
+                        <input type="submit" value="Remover livro">
+                    </form>
                 </div>
                 {% endfor %}
                 

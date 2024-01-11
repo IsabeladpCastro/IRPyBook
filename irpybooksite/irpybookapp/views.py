@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
@@ -107,4 +107,18 @@ def book_search(request):
                   
         return render(request, 'home.html', {'books': livros, 'query': query, 'livros': Livro.objects.all(), 'form': form})
     return render(request, 'home.html', {'books': [], 'query': '', 'livros': []})
+
+
+def delete_book(request, livro_id):
+    
+    livro = get_object_or_404(Livro, pk=livro_id)
+    
+    if request.method == 'POST':
+        livro.delete()
+        messages.success(request, 'Livro excluido com sucesso!!')
+        return redirect('book_search')
+    
+    livros = Livro.objects.all()
+    
+    return render(request, 'home.html', {'livros': livros})
 
