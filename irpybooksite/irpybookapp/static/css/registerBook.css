@@ -119,3 +119,11 @@ button{
     margin-top: 20px;
     margin-left: 100px;
 }
+
+input{
+    width: 350px;
+    height: 35px;
+    background-color: rgb(211, 211, 211);
+    border: none;
+    border-radius: 5px;
+}
