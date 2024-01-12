@@ -10,7 +10,7 @@
     <header>
         <div class="main-container">
             <div class="logo-container">
-                <img class="logo" src="../static/img/Logo.png" alt="logo">
+                <a href="{% url 'home' %}"><img class="logo" src="../static/img/Logo.png" alt="logo"></a>
             </div>
         </div>
         <div class="titulo-container">
@@ -43,7 +43,9 @@
                 </div>
             </div>
 
-            <button type="submit">Registrar Livro</button>
+            <div class="btn-register">
+                <button type="submit">Registrar Livro</button>
+            </div>
         </form>
         
     </main>

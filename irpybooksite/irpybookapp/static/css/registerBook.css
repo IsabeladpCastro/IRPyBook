@@ -108,7 +108,14 @@ button{
     height: 40px;
     background-color: rgb(141, 223, 172);
     border-radius: 50px;
-    margin-top: 30px;
     padding: 0;
+}
 
+.btn-register{
+    display: flex;
+    justify-content: center;
+    width: 500px;
+    height: 50px;
+    margin-top: 20px;
+    margin-left: 100px;
 }
