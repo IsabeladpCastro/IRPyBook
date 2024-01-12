@@ -10,9 +10,7 @@
 <body>
     <header>
         <div class="main-container">
-            <div class="logo-container">
-                <img class="logo" src="../static/img/Logo.png" alt="logo">
-            </div>
+            
 
             <div class="nav-menu">
                 <button class="button-register"><a class="btnlink" href="{% url 'registerBook' %}">Registrar Livro</button>
@@ -34,6 +32,11 @@
     </header>
     
     <main>
+
+        <div class="logo-container">
+            <img class="logo" src="../static/img/Logo.png" alt="logo">
+        </div>
+
         <div class="input-container">
             <form id="searchForm" action="{% url 'book_search' %}" method="get">
                 <div class="input-container">
