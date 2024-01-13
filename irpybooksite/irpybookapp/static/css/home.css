@@ -160,3 +160,37 @@ main{
     text-decoration: none;
     border: none;
 }
+
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 220px;
+    width: 100%;
+    justify-content: center;
+    color: #717171;
+    background-color: #dcdbdc;
+}
+
+.social-logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    list-style-type: none;
+    gap: 50px;
+    font-size: 40px;
+}
+.social-logo a {
+    color: #717171;
+}
+.text-logos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    height: 100px;
+} 
