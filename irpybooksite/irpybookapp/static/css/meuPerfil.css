@@ -9,19 +9,22 @@ header{
     display: flex;
     width: 100%;
     height: 220px;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
+.logout-button{
+    margin-right: 30px;
+}
 .logo-container{
     display: flex;
-    width: 790px;
+    width: 250px;
     justify-content: center;
     align-items: center;
 }
 
 .logo{
-    height: 120px;
+    height: 70px;
 }
 
 main{
@@ -40,31 +43,51 @@ main{
 
 .meu-perfil{
     width: 150px;
-    height: 300px;
+    height: 350px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
-.container{
-    width: 300px;
-    height: 300px;
+.data-container{
+    width: 700px;
+    height: 335px;
     background-color: #d3d3d3;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    border-radius: 10px;
 }
 
+.qtd-Livro{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .qtd{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 120px;
     height: 60px;
     border: 2px solid black;
+    border-radius: 10px;
 }
-
+.favoritos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .fav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 120px;
     height: 60px;
     border: 2px solid black;
+    border-radius: 10px;
 }
