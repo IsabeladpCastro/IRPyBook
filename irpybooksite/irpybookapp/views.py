@@ -122,3 +122,8 @@ def delete_book(request, livro_id):
     
     return render(request, 'home.html', {'livros': livros})
 
+def meusLivros(request):
+    return render(request, 'meusLivros.html')
+
+def meuPerfil(request):
+    return render(request, 'meuPerfil.html')
