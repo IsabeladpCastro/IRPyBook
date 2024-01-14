@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.http import HttpResponse
 from .forms import LivroForm
-from .models import Livro
+from .models import Livro, RegistroLivro
 import requests
 # Create your views here.
 
@@ -43,11 +44,15 @@ def register(request):
         
     return render(request, 'register.html', {'form': form})
 
+@login_required
 def registerBook(request):
     if request.method == 'POST':
         form = LivroForm(request.POST)
         if form.is_valid():
             livro = form.save()
+            
+            RegistroLivro.objects.create(usuario=request.user, livro=livro)
+            
             print(f'Livro registrado: {livro.titulo}, {livro.autor}, {livro.data}')
             messages.success(request, 'Livro registrado com sucesso')
             return redirect('home')
@@ -85,8 +90,8 @@ def buscar_livros(titulo, chave_api):
 def book_search(request):
     if request.method == 'GET':
         query = request.GET.get('query', '')
-        print(f"Query: {query}")  # Adicione esta linha para depurar
-        chave_api = 'AIzaSyCKMi0_Tht5Svvm1_A410dSgkb-62gMCew'  # Substitua pela sua chave API
+        print(f"Query: {query}")
+        chave_api = 'AIzaSyCKMi0_Tht5Svvm1_A410dSgkb-62gMCew'  
         
         livros = []
 
@@ -123,7 +128,11 @@ def delete_book(request, livro_id):
     return render(request, 'home.html', {'livros': livros})
 
 def meusLivros(request):
-    return render(request, 'meusLivros.html')
+    livros_usuario = RegistroLivro.objects.filter(usuario=request.user).values_list("livro",flat=True)
+    livros = Livro.objects.filter(pk__in=livros_usuario)
+    
+    return render(request, 'meusLivros.html', {'livros': livros})
 
 def meuPerfil(request):
+    
     return render(request, 'meuPerfil.html')
