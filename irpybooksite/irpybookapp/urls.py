@@ -10,4 +10,5 @@ urlpatterns = [
     path("delete_book/<int:livro_id>", views.delete_book, name="delete_book"),
     path("meusLivros/", views.meusLivros, name="meusLivros"),
     path("meuPerfil/", views.meuPerfil, name="meuPerfil"),
+    path('logout/', views.fazerLogout, name="logout"),
 ]

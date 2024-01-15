@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
@@ -134,5 +134,17 @@ def meusLivros(request):
     return render(request, 'meusLivros.html', {'livros': livros})
 
 def meuPerfil(request):
+    livros_registrados = RegistroLivro.objects.filter(usuario=request.user).count()
     
-    return render(request, 'meuPerfil.html')
+    return render(request, 'meuPerfil.html', {'livros_registrados': livros_registrados})
+
+
+def fazerLogout(request):
+    logout(request) 
+    print('Logout realizado com sucesso')
+    
+    if not request.user.is_authenticated:
+        print('Usuário deslogado com sucesso')
+    else:
+        print('Falha ao deslogar o usuário')
+    return redirect('login')

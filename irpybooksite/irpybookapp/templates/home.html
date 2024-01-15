@@ -21,10 +21,13 @@
                         </a>
                       
                         <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Meu Perfil</a></li>
+                          <li><a class="dropdown-item" href="{% url 'meuPerfil' %}">Meu Perfil</a></li>
                           <li><a class="dropdown-item" href="{% url 'meusLivros' %}">Meus Livros</a></li>
-                          <li><a class="dropdown-item" href="#">Sair</a></li>
+                          <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sair</a></li>
                         </ul>
+                        <form id="logout-form" method="post" action="{% url 'logout' %}" style="display: none;">
+                            {% csrf_token %}
+                        </form>
                     </div>
             </div>
         </div>
