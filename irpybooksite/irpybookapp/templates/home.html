@@ -59,6 +59,10 @@
                             <strong class="title-container">Titulo: </strong> "{{ book.title }}" <br>
                             <strong class="author-container">Autor: </strong> "{{ book.authors |join:", " }} <br>
                             <img src="{{ book.thumbnail }}" alt="{{ book.title }}">
+                            <form action="{% url 'favoritar_livros' livro_id=book.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit">Favoritar</button>
+                            </form>
                         </div>
                         {% endfor %}
                     </div>     
@@ -81,7 +85,6 @@
                     </form>
                 </div>
                 {% endfor %}
-                
             </div>
         </div>   
     </main>
@@ -108,11 +111,6 @@
                 </li>
             </div>
 
-            <div class="text-logos">
-                <p>Info ° Suporte ° Marketing</p>
-                <p>Termos de Uso ° Politica de Privacidade</p>
-                
-            </div>
         </div>
         <p>&copy;- IRPyBook</p>
     </footer>

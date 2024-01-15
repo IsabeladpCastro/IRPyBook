@@ -102,13 +102,18 @@ def book_search(request):
             form = LivroForm(request.POST)
             if form.is_valid():
                 livro = form.save()
+                
+                RegistroLivro.objects.create(usuario=request.user, livro=livro, favorito=True)
+                
                 print(f'Livro registrado: {livro.titulo}, {livro.autor}, {livro.data}')
                 messages.success(request, 'Livro registrado com sucesso')
             else:
                 messages.error(request, 'Erro no registro do livro')
                 print('ta dando erro aqui oia', form.errors)
         else:
-            form = LivroForm()        
+            form = LivroForm()  
+            
+            livros_favoritos = RegistroLivro.objects.filter(usuario=request.user, favorito=True).count()    
                   
         return render(request, 'home.html', {'books': livros, 'query': query, 'livros': Livro.objects.all(), 'form': form})
     return render(request, 'home.html', {'books': [], 'query': '', 'livros': []})
@@ -136,7 +141,20 @@ def meusLivros(request):
 def meuPerfil(request):
     livros_registrados = RegistroLivro.objects.filter(usuario=request.user).count()
     
+    
     return render(request, 'meuPerfil.html', {'livros_registrados': livros_registrados})
+
+def favoritar_livros(request, livro_id):
+    livro = get_object_or_404(Livro, id=livro_id)  
+    
+    if RegistroLivro.objects.filter(usuario=request.user, livro=livro, favorito=True).exists():
+        messages.warning(request, 'Livro já está marcado como favorito.')
+    else:
+        RegistroLivro.objects.create(usuario=request.user, livro=livro, favorito=True)
+        messages.success(request, 'Livro marcado como favorito com sucesso.')
+    
+    return redirect('book_search', query=request.GET.get('query', ''))
+
 
 
 def fazerLogout(request):
