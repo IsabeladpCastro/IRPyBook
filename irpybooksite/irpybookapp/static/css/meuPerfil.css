@@ -16,11 +16,13 @@ header{
 .logout-button{
     margin-right: 30px;
 }
+
 .logo-container{
     display: flex;
     width: 250px;
     justify-content: center;
     align-items: center;
+    margin-top: 10px;
 }
 
 .logo{
@@ -42,18 +44,21 @@ main{
 }
 
 .meu-perfil{
-    width: 150px;
-    height: 350px;
+    width: 700px;
+    height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-color: #d3d3d3;
+    border-radius: 10px;
+    gap: 10px;
 }
 
 .data-container{
     width: 700px;
     height: 335px;
-    background-color: #d3d3d3;
+    background-color: #e7e7e7;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -67,6 +72,7 @@ main{
     justify-content: center;
     align-items: center;
 }
+
 .qtd{
     display: flex;
     justify-content: center;
@@ -76,12 +82,14 @@ main{
     border: 2px solid black;
     border-radius: 10px;
 }
+
 .favoritos{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+
 .fav{
     display: flex;
     justify-content: center;
@@ -89,5 +97,13 @@ main{
     width: 120px;
     height: 60px;
     border: 2px solid black;
+    border-radius: 10px;
+} 
+
+button{
+    width: 80px;
+    height: 30px;
+    color: black;
+    background-color: #ff7777;
     border-radius: 10px;
 }
