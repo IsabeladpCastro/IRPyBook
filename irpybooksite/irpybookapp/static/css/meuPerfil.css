@@ -16,6 +16,7 @@ header{
 .logout-button{
     margin-right: 30px;
 }
+
 .logo-container{
     display: flex;
     width: 250px;
@@ -71,6 +72,7 @@ main{
     justify-content: center;
     align-items: center;
 }
+
 .qtd{
     display: flex;
     justify-content: center;
@@ -80,12 +82,14 @@ main{
     border: 2px solid black;
     border-radius: 10px;
 }
+
 .favoritos{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+
 .fav{
     display: flex;
     justify-content: center;
@@ -94,7 +98,11 @@ main{
     height: 60px;
     border: 2px solid black;
     border-radius: 10px;
+<<<<<<< HEAD
 }
+=======
+} 
+>>>>>>> dbd99791b3200c3e12548ac73ac3a79ca376639c
 
 button{
     width: 80px;
@@ -102,8 +110,11 @@ button{
     color: black;
     background-color: #ff7777;
     border-radius: 10px;
+<<<<<<< HEAD
 }
 
 .nome-usuario{
     font-size: 26px;
+=======
+>>>>>>> dbd99791b3200c3e12548ac73ac3a79ca376639c
 }
