@@ -83,14 +83,14 @@ main{
     border-radius: 10px;
 }
 
-.favoritos{
+.adicionados{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.fav{
+.add{
     display: flex;
     justify-content: center;
     align-items: center;

@@ -6,7 +6,7 @@ from django.contrib import messages
 from datetime import datetime
 from django.http import HttpResponse, JsonResponse
 from .forms import LivroForm, AdicionarLivroForm
-from .models import Livro, RegistroLivro
+from .models import Livro, RegistroLivro, LivroAdicionado
 import requests, re
 # Create your views here.
 
@@ -117,10 +117,9 @@ def book_search(request):
                 print('ta dando erro aqui oia', form.errors)
         else:
             form = LivroForm()  
-            livros_favoritos = RegistroLivro.objects.filter(usuario=request.user, favorito=True).count() 
             
                   
-        return render(request, 'home.html', {'books': livros, 'query': query, 'livros': Livro.objects.all(), 'form': form, 'livros_favoritos': livros_favoritos})
+        return render(request, 'home.html', {'books': livros, 'query': query, 'livros': Livro.objects.all(), 'form': form})
     return render(request, 'home.html', {'books': [], 'query': '', 'livros': []})
 
 
@@ -146,26 +145,10 @@ def meusLivros(request):
     return render(request, 'meusLivros.html', {'livros': livros})
 
 def meuPerfil(request):
-    livros_usuario = RegistroLivro.objects.filter(usuario=request.user)
-    livros_favoritos = livros_usuario.filter(favorito=True).count()
-    livros_adicionados = livros_usuario.filter(favorito=False).count()
-    livros_registrados = livros_usuario.count()
+    livros_registrados = RegistroLivro.objects.filter(usuario=request.user).count()
+    livros_adicionados = LivroAdicionado.objects.filter(usuario=request.user).count()
 
     return render(request, 'meuPerfil.html', {'livros_registrados': livros_registrados, 'livros_adicionados': livros_adicionados})
-
-def favoritar_livro(request):
-    if request.method == 'POST':
-        livro_id_raw = request.POST.get('livro_id')
-        livro_id = re.sub(r'\D', '', livro_id_raw)
-
-        if livro_id.isdigit():
-            livro = get_object_or_404(Livro, pk=int(livro_id))
-
-            RegistroLivro.objects.create(usuario=request.user, livro=livro, favorito=True)
-
-        return redirect('meuPerfil')
-
-    return redirect('meuPerfil')  
 
 
 def adicionar_livro(request):
@@ -177,7 +160,7 @@ def adicionar_livro(request):
             
             books = Livro.objects.all()
             
-            RegistroLivro.objects.create(usuario=request.user, livro=livro, favorito=False)
+            LivroAdicionado.objects.create(usuario=request.user, livro=livro)
 
             livros_adicionados = RegistroLivro.objects.filter(usuario=request.user).values_list("livro", flat=True)
             livros_adicionados = Livro.objects.filter(pk__in=livros_adicionados)

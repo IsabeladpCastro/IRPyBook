@@ -10,7 +10,6 @@ urlpatterns = [
     path("delete_book/<int:livro_id>", views.delete_book, name="delete_book"),
     path('adicionar-livro/', views.adicionar_livro, name='adicionar_livro'),
     path("meusLivros/", views.meusLivros, name="meus_livros"),
-    path('favoritar_livro/', views.favoritar_livro, name='favoritar_livro'),
     path("meuPerfil/", views.meuPerfil, name="meuPerfil"),
     path('logout/', views.fazerLogout, name="logout"),
 ]

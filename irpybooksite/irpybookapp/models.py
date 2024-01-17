@@ -14,4 +14,7 @@ class Livro(models.Model):
 class RegistroLivro(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     livro = models.ForeignKey(Livro, on_delete=models.CASCADE)
-    favorito = models.BooleanField(default=False)    
+
+class LivroAdicionado(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    livro = models.ForeignKey(Livro, on_delete=models.CASCADE)
