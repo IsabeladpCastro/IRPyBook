@@ -31,9 +31,18 @@
                     </form>
                 </div>
                 {% endfor %}
-                
             </div>
-        </div>   
+
+            <div class="adicionados">
+                <h1>Livros Adicionados</h1>
+                {% for livro_adicionado in livros_adicionados %}
+                <div class="item-result">
+                    <h2>{{ livro_adicionado.titulo }}</h2>
+                    <p>Autor:{{ livro_adicionado.autor }}</p> 
+                 </div>
+                {% endfor %}
+            </div>
+        </div>
     </main>
 
     <footer>

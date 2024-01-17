@@ -21,6 +21,7 @@ header{
     width: 250px;
     justify-content: center;
     align-items: center;
+    margin-top: 10px;
 }
 
 .logo{
@@ -42,18 +43,21 @@ main{
 }
 
 .meu-perfil{
-    width: 150px;
-    height: 350px;
+    width: 700px;
+    height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-color: #d3d3d3;
+    border-radius: 10px;
+    gap: 10px;
 }
 
 .data-container{
     width: 700px;
     height: 335px;
-    background-color: #d3d3d3;
+    background-color: #e7e7e7;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -90,4 +94,16 @@ main{
     height: 60px;
     border: 2px solid black;
     border-radius: 10px;
+}
+
+button{
+    width: 80px;
+    height: 30px;
+    color: black;
+    background-color: #ff7777;
+    border-radius: 10px;
+}
+
+.nome-usuario{
+    font-size: 26px;
 }

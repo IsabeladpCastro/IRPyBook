@@ -22,7 +22,7 @@
                       
                         <ul class="dropdown-menu">
                           <li><a class="dropdown-item" href="{% url 'meuPerfil' %}">Meu Perfil</a></li>
-                          <li><a class="dropdown-item" href="{% url 'meusLivros' %}">Meus Livros</a></li>
+                          <li><a class="dropdown-item" href="{% url 'meus_livros' %}">Meus Livros</a></li>
                           <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sair</a></li>
                         </ul>
                         <form id="logout-form" method="post" action="{% url 'logout' %}" style="display: none;">
@@ -59,16 +59,19 @@
                             <strong class="title-container">Titulo: </strong> "{{ book.title }}" <br>
                             <strong class="author-container">Autor: </strong> "{{ book.authors |join:", " }} <br>
                             <img src="{{ book.thumbnail }}" alt="{{ book.title }}">
-                            <form action="{% url 'favoritar_livros' livro_id=book.id %}" method="post">
+                            <form method="post" action="{% url 'adicionar_livro' %}">
                                 {% csrf_token %}
-                                <button type="submit">Favoritar</button>
+                                <input type="hidden" name="titulo" value="{{ book.title }}">
+                                <input type="hidden" name="autor" value="{{ book.authors |join:", " }}">
+                                <input type="hidden" name="sinopse" value="Sinopse do livro">
+                                <button type="submit">Adicionar</button>
                             </form>
                         </div>
                         {% endfor %}
                     </div>     
                 {% else %}
                     <p>Nenhum Resultado Encontrado</p>
-                {% endif %}
+                {% endif %} 
             </div>
 
             <div class="register-result">
@@ -118,5 +121,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script src="../static/js/fav.js"></script>
+
+
+
 </body>
 </html>

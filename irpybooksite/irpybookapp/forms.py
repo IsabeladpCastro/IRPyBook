@@ -19,4 +19,9 @@ class LivroForm(forms.ModelForm):
             'autor',
             'data',
             'sinopse',
-    ]
+    ] 
+        
+class AdicionarLivroForm(forms.ModelForm):
+    class Meta:
+        model = Livro
+        fields = ['titulo', 'autor', 'sinopse']        

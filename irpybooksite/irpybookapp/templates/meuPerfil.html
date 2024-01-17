@@ -14,7 +14,10 @@
         </div>
 
         <div class="logout-button">
-            <button>Logout</button>
+            <form id="logout-form" method="post" action="{% url 'logout' %}" style="display: none;">
+                <button>LogOut</button> 
+                {% csrf_token %}
+            </form>
         </div>
     </header>
     
@@ -22,7 +25,9 @@
         <div class="meu-perfil">
             <img class="perfil" src="../static/img/perfil.png" alt="perfil">
             <div class="nome-usuario">
-                Nome do usuario
+                <strong>
+                {{ request.user.username }}
+                </strong>
             </div>
         </div>
         
@@ -35,9 +40,9 @@
                 </div>
             </div>
             <div class="favoritos">
-                <h3>Livros Favoritos</h3>
+                <h3>Livros adicionados</h3>
                 <div class="fav">
-                    {{ livros_favoritos }}
+                    {{ livros_adicionados }}
                 </div>
             </div>
         </div>

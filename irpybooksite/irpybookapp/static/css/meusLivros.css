@@ -54,6 +54,16 @@ main{
     height: 100%;
 }
 
+.adicionados{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    overflow: scroll;
+    border: 5px ridge rgb(59, 0, 236);
+    width: 800px;
+    height: 100%;
+}
+
 footer {
     display: flex;
     flex-direction: column;
@@ -64,6 +74,7 @@ footer {
     justify-content: center;
     color: #717171;
     background-color: #dcdbdc;
+    margin-bottom: -40px;
 }
 
 .social-logo{
@@ -76,9 +87,11 @@ footer {
     gap: 50px;
     font-size: 40px;
 }
+
 .social-logo a {
     color: #717171;
 }
+
 .text-logos{
     display: flex;
     flex-direction: column;

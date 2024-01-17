@@ -3,10 +3,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from django.http import HttpResponse
-from .forms import LivroForm
+from datetime import datetime
+from django.http import HttpResponse, JsonResponse
+from .forms import LivroForm, AdicionarLivroForm
 from .models import Livro, RegistroLivro
-import requests
+import requests, re
 # Create your views here.
 
 def login_view(request):
@@ -76,13 +77,16 @@ def buscar_livros(titulo, chave_api):
         dados_livros = response.json()
         livros = []
         
-        if "items" in dados_livros:
+        if "items" in dados_livros: 
+            
             for item in dados_livros["items"]:
                 livro_info = {
                     'title': item['volumeInfo']['title'],
                     'authors': item['volumeInfo'].get('authors', []),
                     'thumbnail': item['volumeInfo'].get('imageLinks', {}).get('thumbnail', ''),
+                    'id': item.get('id', ''),
                 }
+                
                 livros.append(livro_info)
         return livros
     return None
@@ -105,6 +109,7 @@ def book_search(request):
                 
                 RegistroLivro.objects.create(usuario=request.user, livro=livro, favorito=True)
                 
+                
                 print(f'Livro registrado: {livro.titulo}, {livro.autor}, {livro.data}')
                 messages.success(request, 'Livro registrado com sucesso')
             else:
@@ -112,10 +117,10 @@ def book_search(request):
                 print('ta dando erro aqui oia', form.errors)
         else:
             form = LivroForm()  
+            livros_favoritos = RegistroLivro.objects.filter(usuario=request.user, favorito=True).count() 
             
-            livros_favoritos = RegistroLivro.objects.filter(usuario=request.user, favorito=True).count()    
                   
-        return render(request, 'home.html', {'books': livros, 'query': query, 'livros': Livro.objects.all(), 'form': form})
+        return render(request, 'home.html', {'books': livros, 'query': query, 'livros': Livro.objects.all(), 'form': form, 'livros_favoritos': livros_favoritos})
     return render(request, 'home.html', {'books': [], 'query': '', 'livros': []})
 
 
@@ -136,26 +141,60 @@ def meusLivros(request):
     livros_usuario = RegistroLivro.objects.filter(usuario=request.user).values_list("livro",flat=True)
     livros = Livro.objects.filter(pk__in=livros_usuario)
     
+    
+    
     return render(request, 'meusLivros.html', {'livros': livros})
 
 def meuPerfil(request):
     livros_registrados = RegistroLivro.objects.filter(usuario=request.user).count()
+    livros_usuario = RegistroLivro.objects.filter(usuario=request.user)
+    livros_favoritos = RegistroLivro.objects.filter(usuario=request.user, favorito=True).count()
+    livros_adicionados = RegistroLivro.objects.filter(usuario=request.user, favorito=False).count()
+    livros_registrados = livros_usuario.count()
     
-    
-    return render(request, 'meuPerfil.html', {'livros_registrados': livros_registrados})
+           
+    return render(request, 'meuPerfil.html', {'livros_registrados': livros_registrados, 'livros_adicionados': livros_adicionados})
 
-def favoritar_livros(request, livro_id):
-    livro = get_object_or_404(Livro, id=livro_id)  
-    
-    if RegistroLivro.objects.filter(usuario=request.user, livro=livro, favorito=True).exists():
-        messages.warning(request, 'Livro já está marcado como favorito.')
+def favoritar_livro(request):
+    if request.method == 'POST':
+        livro_id_raw = request.POST.get('livro_id')
+        livro_id = re.sub(r'\D', '', livro_id_raw)
+
+        if livro_id.isdigit():
+            livro = get_object_or_404(Livro, pk=int(livro_id))
+
+            RegistroLivro.objects.create(usuario=request.user, livro=livro, favorito=True)
+
+        return redirect('meuPerfil')
+
+    return redirect('meuPerfil')  
+
+
+def adicionar_livro(request):
+    if request.method == 'POST':
+        form = AdicionarLivroForm(request.POST)
+        if form.is_valid():
+            livro = form.save(commit=False)
+            livro.save()
+            
+            books = Livro.objects.all()
+            
+            RegistroLivro.objects.create(usuario=request.user, livro=livro, favorito=False)
+
+            livros_adicionados = RegistroLivro.objects.filter(usuario=request.user).values_list("livro", flat=True)
+            livros_adicionados = Livro.objects.filter(pk__in=livros_adicionados)
+
+            messages.success(request, 'Livro adicionado com sucesso!')
+            print('SUCESSO')
+            print(books)
+            return render(request, 'meusLivros.html', {'books': books, 'form': form, 'livros_adicionados': livros_adicionados})
+        else:
+            messages.error(request, 'Erro ao adicionar o livro. Verifique os dados do formulário.')
     else:
-        RegistroLivro.objects.create(usuario=request.user, livro=livro, favorito=True)
-        messages.success(request, 'Livro marcado como favorito com sucesso.')
-    
-    return redirect('book_search', query=request.GET.get('query', ''))
+        form = AdicionarLivroForm()
 
-
+    books = []
+    return render(request, 'meusLivros.html', {'books': books, 'form': form})
 
 def fazerLogout(request):
     logout(request) 
