@@ -146,13 +146,11 @@ def meusLivros(request):
     return render(request, 'meusLivros.html', {'livros': livros})
 
 def meuPerfil(request):
-    livros_registrados = RegistroLivro.objects.filter(usuario=request.user).count()
     livros_usuario = RegistroLivro.objects.filter(usuario=request.user)
-    livros_favoritos = RegistroLivro.objects.filter(usuario=request.user, favorito=True).count()
-    livros_adicionados = RegistroLivro.objects.filter(usuario=request.user, favorito=False).count()
+    livros_favoritos = livros_usuario.filter(favorito=True).count()
+    livros_adicionados = livros_usuario.filter(favorito=False).count()
     livros_registrados = livros_usuario.count()
-    
-           
+
     return render(request, 'meuPerfil.html', {'livros_registrados': livros_registrados, 'livros_adicionados': livros_adicionados})
 
 def favoritar_livro(request):

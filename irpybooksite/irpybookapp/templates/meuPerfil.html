@@ -10,14 +10,12 @@
 <body>
     <header>
         <div class="logo-container">
-            <img class="logo" src="../static/img/Logo.png" alt="logo">
+            <a href="{% url 'home' %}"><img class="logo" src="../static/img/Logo.png" alt="logo"></a>
         </div>
 
         <div class="logout-button">
-            <form id="logout-form" method="post" action="{% url 'logout' %}" style="display: none;">
                 <button>LogOut</button> 
                 {% csrf_token %}
-            </form>
         </div>
     </header>
     
@@ -39,10 +37,16 @@
                     {{ livros_registrados }}
                 </div>
             </div>
-            <div class="favoritos">
+            <div class="adicionados">
                 <h3>Livros adicionados</h3>
-                <div class="fav">
+                <div class="add">
                     {{ livros_adicionados }}
+                </div>
+            </div>
+            <div class="favoritos">
+                <h3>Livros favoritos</h3>
+                <div class="fav">
+                    {{ livros_favoritos }}
                 </div>
             </div>
         </div>

@@ -98,11 +98,7 @@ main{
     height: 60px;
     border: 2px solid black;
     border-radius: 10px;
-<<<<<<< HEAD
 }
-=======
-} 
->>>>>>> dbd99791b3200c3e12548ac73ac3a79ca376639c
 
 button{
     width: 80px;
@@ -110,11 +106,8 @@ button{
     color: black;
     background-color: #ff7777;
     border-radius: 10px;
-<<<<<<< HEAD
 }
 
 .nome-usuario{
     font-size: 26px;
-=======
->>>>>>> dbd99791b3200c3e12548ac73ac3a79ca376639c
 }
