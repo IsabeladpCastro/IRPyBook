@@ -19,7 +19,7 @@
 
             <div class="register-result">
                 <h1>Meus Livros</h1>
-                {% for livro in livros %}
+                {% for livro in livros_registrados %}
                 <div class="item-result">
                     <h2>{{ livro.titulo }}</h2>
                     <p>Autor:{{ livro.autor }}</p> 
@@ -34,7 +34,7 @@
             </div>
 
             <div class="adicionados">
-                <h1>Livros Adicionados</h1>
+                <h1>Livros Favoritos</h1>
                 {% for livro_adicionado in livros_adicionados %}
                 <div class="item-result">
                     <h2>{{ livro_adicionado.titulo }}</h2>

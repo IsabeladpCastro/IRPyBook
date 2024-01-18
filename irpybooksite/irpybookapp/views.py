@@ -137,12 +137,17 @@ def delete_book(request, livro_id):
     return render(request, 'home.html', {'livros': livros})
 
 def meusLivros(request):
-    livros_usuario = RegistroLivro.objects.filter(usuario=request.user).values_list("livro",flat=True)
-    livros = Livro.objects.filter(pk__in=livros_usuario)
+    #Livros registrados
+    livros_registrados = RegistroLivro.objects.filter(usuario=request.user).values_list("livro", flat=True)
+    livros_registrados = Livro.objects.filter(pk__in=livros_registrados)
+
+    # Livros adicionados
+    livros_adicionados = LivroAdicionado.objects.filter(usuario=request.user).values_list("livro", flat=True)
+    livros_adicionados = Livro.objects.filter(pk__in=livros_adicionados)
     
     
     
-    return render(request, 'meusLivros.html', {'livros': livros})
+    return render(request, 'meusLivros.html', {'livros_registrados': livros_registrados, 'livros_adicionados': livros_adicionados})
 
 def meuPerfil(request):
     livros_registrados = RegistroLivro.objects.filter(usuario=request.user).count()

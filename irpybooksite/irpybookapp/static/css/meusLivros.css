@@ -59,7 +59,7 @@ main{
     text-align: center;
     flex-direction: column;
     overflow: scroll;
-    border: 5px ridge rgb(59, 0, 236);
+    border: 5px ridge rgb(39, 39, 39);
     width: 800px;
     height: 100%;
 }
