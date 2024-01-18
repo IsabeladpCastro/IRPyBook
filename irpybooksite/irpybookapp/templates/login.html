@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href= "../static/css/login.css">
     <title>IRPyBook - Login</title>
+    <link rel="shortcut icon" type="imagex/png" href="../static/img/IconLogo.png">
 </head>
 <body>
     <div class="main-container">
@@ -20,7 +21,7 @@
                 {% csrf_token %}
                 
                 <div class="email-container">
-                    <img class="icon-email" src="{% static 'img/emailIcon.png' %}">
+                    <img class="icon-email" src="{% static 'img/user.png' %}">
                     <input type="text" name="username" id="username-input" placeholder="Usuario">
                 </div>
                 <div class="senha-container">
