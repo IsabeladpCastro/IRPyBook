@@ -15,8 +15,10 @@
         </div>
 
         <div class="logout-button">
-                <button>LogOut</button> 
-                {% csrf_token %}
+                <button onclick="event.preventDefault(); document.getElementById('logout-form').submit();">LogOut</button> 
+                <form id="logout-form" method="post" action="{% url 'logout' %}" style="display: none;">
+                    {% csrf_token %}
+                </form>
         </div>
     </header>
     
@@ -46,5 +48,15 @@
             </div>
         </div>
     </main>
+
+
+    {% block scripts %}
+        <script>
+            function logout() {
+            var form = document.getElementById('logout-form');
+            form.submit();
+            }
+        </script>
+    {% endblock %}
 </body>
 </html>

@@ -174,17 +174,17 @@ def adicionar_livro(request):
             livros_adicionados = RegistroLivro.objects.filter(usuario=request.user).values_list("livro", flat=True)
             livros_adicionados = Livro.objects.filter(pk__in=livros_adicionados)
 
-            messages.success(request, 'Livro adicionado com sucesso!')
+            messages.success(request, "Livro adicionado com sucesso! Acesse a pagina de Meus Livros para visualizar os livros favoritados")
             print('SUCESSO')
             print(books)
-            return render(request, 'meusLivros.html', {'books': books, 'form': form, 'livros_adicionados': livros_adicionados})
+            return render(request, 'home.html', {'books': books, 'form': form, 'livros_adicionados': livros_adicionados})
         else:
             messages.error(request, 'Erro ao adicionar o livro. Verifique os dados do formulário.')
     else:
         form = AdicionarLivroForm()
 
     books = []
-    return render(request, 'meusLivros.html', {'books': books, 'form': form})
+    return render(request, 'home.html', {'books': books, 'form': form})
 
 def fazerLogout(request):
     logout(request) 

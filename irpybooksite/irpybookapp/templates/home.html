@@ -125,6 +125,17 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script src="../static/js/fav.js"></script>
 
+    {% block scripts %}
+      <script>
+        {% if messages %}
+          {% for message in messages %}
+            alert("{{ message }}");
+          {% endfor %}
+        {% endif %}
+      </script>
+    {% endblock %}
+
+
 
 
 </body>
