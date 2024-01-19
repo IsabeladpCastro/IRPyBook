@@ -65,6 +65,7 @@
                                 <input type="hidden" name="titulo" value="{{ book.title }}">
                                 <input type="hidden" name="autor" value="{{ book.authors |join:", " }}">
                                 <input type="hidden" name="sinopse" value="Sinopse do livro">
+                                <input type="hidden" src="{{ book.thumbnail }}" alt="">
                                 <button type="submit">Adicionar</button>
                             </form>
                         </div>
@@ -87,7 +88,7 @@
                         {% csrf_token %}
                         <input type="submit" value="Remover livro">
                     </form>
-                </div>
+                </div>  
                 {% endfor %}
             </div>
         </div>   

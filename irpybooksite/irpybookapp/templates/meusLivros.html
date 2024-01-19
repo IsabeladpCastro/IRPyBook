@@ -40,6 +40,10 @@
                 <div class="item-result">
                     <h2>{{ livro_adicionado.titulo }}</h2>
                     <p>Autor:{{ livro_adicionado.autor }}</p> 
+                    <form method="post" action="{% url 'delete_book' livro_adicionado.id %}">
+                        {% csrf_token %}
+                        <input type="submit" value="Remover livro">
+                    </form>
                  </div>
                 {% endfor %}
             </div>

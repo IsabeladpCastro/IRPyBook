@@ -112,14 +112,18 @@ def book_search(request):
                 
                 print(f'Livro registrado: {livro.titulo}, {livro.autor}, {livro.data}')
                 messages.success(request, 'Livro registrado com sucesso')
+                return redirect('meusLivros')
             else:
                 messages.error(request, 'Erro no registro do livro')
                 print('ta dando erro aqui oia', form.errors)
         else:
             form = LivroForm()  
             
-                  
-        return render(request, 'home.html', {'books': livros, 'query': query, 'livros': Livro.objects.all(), 'form': form})
+        livros_registrados = RegistroLivro.objects.filter(usuario=request.user).values_list("livro", flat=True)
+        livros_registrados = Livro.objects.filter(id__in=livros_registrados)
+          
+        print(f'livros_registrados {livros_registrados}')     
+        return render(request, 'home.html', {'books': livros, 'query': query, 'livros': livros_registrados, 'form': form})
     return render(request, 'home.html', {'books': [], 'query': '', 'livros': []})
 
 
