@@ -123,8 +123,8 @@ def book_search(request):
         livros_registrados = Livro.objects.filter(id__in=livros_registrados)
           
         print(f'livros_registrados {livros_registrados}')     
-        return render(request, 'home.html', {'books': livros, 'query': query, 'livros': livros_registrados, 'form': form})
-    return render(request, 'home.html', {'books': [], 'query': '', 'livros': []})
+        return render(request, 'home.html', {'books': livros, 'query': query, 'livros_registrados': livros_registrados})
+    return render(request, 'home.html', {'books': [], 'query': '', 'livros_registrados': []})
 
 
 def delete_book(request, livro_id):
@@ -167,7 +167,6 @@ def adicionar_livro(request):
             livro = form.save(commit=False)
             livro.save()
             
-            books = Livro.objects.all()
             
             LivroAdicionado.objects.create(usuario=request.user, livro=livro)
 
@@ -176,15 +175,13 @@ def adicionar_livro(request):
 
             messages.success(request, "Livro adicionado com sucesso! Acesse a pagina de Meus Livros para visualizar os livros favoritados")
             print('SUCESSO')
-            print(books)
-            return render(request, 'home.html', {'books': books, 'form': form, 'livros_adicionados': livros_adicionados})
+            return render(request, 'home.html', {'form': form, 'livros_adicionados': livros_adicionados,})
         else:
             messages.error(request, 'Erro ao adicionar o livro. Verifique os dados do formulário.')
     else:
         form = AdicionarLivroForm()
 
-    books = []
-    return render(request, 'home.html', {'books': books, 'form': form})
+    return render(request, 'adicionar_livro.html', {'form': form})
 
 def fazerLogout(request):
     logout(request) 
