@@ -167,15 +167,10 @@ def adicionar_livro(request):
             livro = form.save(commit=False)
             livro.save()
             
-            
             LivroAdicionado.objects.create(usuario=request.user, livro=livro)
 
-            livros_adicionados = RegistroLivro.objects.filter(usuario=request.user).values_list("livro", flat=True)
-            livros_adicionados = Livro.objects.filter(pk__in=livros_adicionados)
-
-            messages.success(request, "Livro adicionado com sucesso! Acesse a pagina de Meus Livros para visualizar os livros favoritados")
-            print('SUCESSO')
-            return render(request, 'home.html', {'form': form, 'livros_adicionados': livros_adicionados,})
+            messages.success(request, "Livro adicionado com sucesso! Acesse a página de Meus Livros para visualizar os livros favoritados")
+            return redirect('meus_livros')
         else:
             messages.error(request, 'Erro ao adicionar o livro. Verifique os dados do formulário.')
     else:
