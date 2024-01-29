@@ -149,8 +149,6 @@ def meusLivros(request):
     livros_adicionados = LivroAdicionado.objects.filter(usuario=request.user).values_list("livro", flat=True)
     livros_adicionados = Livro.objects.filter(pk__in=livros_adicionados)
     
-    
-    
     return render(request, 'meusLivros.html', {'livros_registrados': livros_registrados, 'livros_adicionados': livros_adicionados})
 
 def meuPerfil(request):
