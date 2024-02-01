@@ -13,4 +13,5 @@ urlpatterns = [
     path("meuPerfil/", views.meuPerfil, name="meuPerfil"),
     path('logout/', views.fazerLogout, name="logout"),
     path('social/', include('social_django.urls', namespace='social')),
+    path('livro/<int:livro_id>/', views.detalhes_do_livro, name='detalhes_do_livro'),
 ]
