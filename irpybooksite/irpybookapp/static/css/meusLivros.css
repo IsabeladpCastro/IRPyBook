@@ -100,3 +100,83 @@ footer {
     width: 400px;
     height: 100px;
 } 
+
+@media (max-width: 425px) {
+
+    /*  */
+    .nav-menu{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        height: 60px;
+        width: 360px;
+        gap: 15px;
+        margin-right: 15px
+    }
+
+    .input-container button{
+        height: 30px;
+        width: 40px;
+    }
+
+    .input-container img{
+        height: 20px;
+        width: 25px;
+    }
+
+    .logo-container{
+        display: flex;
+        width: 200px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .logo-container img{
+        height: 80px;
+        width: 200px;
+    }
+
+    .results-container{
+        overflow: scroll;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        height: 500px;
+        padding: 10px;
+    }
+
+    
+    .register-result{
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        overflow: scroll;
+        border: 5px ridge rgb(39, 39, 39);
+        width: 300px;
+        height: 100%;
+        margin-top: 10px;
+    }
+
+    .adicionados{
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        overflow: scroll;
+        border: 5px ridge rgb(39, 39, 39);
+        width: 300px;
+        height: 100%;
+        margin-top: 10px;
+    }
+
+    header{
+        display: flex;
+        width: 100%;
+        height: 70px;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    
+}
