@@ -123,3 +123,11 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_URL = 'logout'
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = 'sua-chave-de-api'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'seu-segredo-de-api'

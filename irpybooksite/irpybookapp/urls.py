@@ -1,4 +1,4 @@
-from django.urls import path 
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
@@ -12,4 +12,5 @@ urlpatterns = [
     path("meusLivros/", views.meusLivros, name="meus_livros"),
     path("meuPerfil/", views.meuPerfil, name="meuPerfil"),
     path('logout/', views.fazerLogout, name="logout"),
+    path('social/', include('social_django.urls', namespace='social')),
 ]

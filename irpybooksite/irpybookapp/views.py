@@ -185,3 +185,11 @@ def fazerLogout(request):
     else:
         print('Falha ao deslogar o usuário')
     return redirect('login')
+
+from django.contrib.auth import login as auth_login
+
+def login_social(request):
+    # Seu código para processar a autenticação social
+    user = request.user
+    auth_login(request, user)
+    return redirect('home')
