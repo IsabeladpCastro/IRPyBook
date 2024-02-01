@@ -6,8 +6,9 @@ from django.contrib import messages
 from datetime import datetime
 from django.http import HttpResponse, JsonResponse
 from .forms import LivroForm, AdicionarLivroForm
-from .models import Livro, RegistroLivro, LivroAdicionado
+from .models import Livro, RegistroLivro, LivroAdicionado, AtividadeUsuario
 import requests, re
+
 # Create your views here.
 
 def login_view(request):
@@ -198,3 +199,13 @@ def detalhes_do_livro(request, livro_id):
     livro = get_object_or_404(Livro, pk=livro_id)
 
     return render(request, 'detalhes_do_livro.html', {'livro': livro})
+
+
+
+def registrar_livro(request):
+
+    livro = Livro.objects.create(titulo='Novo Livro', autor='Autor Desconhecido', data=datetime.now())
+    
+    AtividadeUsuario.objects.create(usuario=request.user, tipo_atividade='registro_livro', livro_relacionado=livro)
+
+    return render(request, 'registro_livro.html', {'livro': livro})
