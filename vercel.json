@@ -1,6 +1,6 @@
 {
     "builds": [{
-        "src": "irpybooksite/wsgi.py",
+        "src": "irpybookapp/wsgi.py",
         "use": "@ardnt/vercel-python-wsgi",
         "config": { "maxLambdaSize": "15mb" }
     }],
