@@ -10,17 +10,17 @@
         "src": "build_files.sh",
         "use": "@vercel/static-build",
         "config": {
-          "distDir": ".vercel_build_output"
+          "distDir": ".vercel_build_output" 
         }
       }
     ],
     "routes": [
       {
-        "src": "/static/(.*)",
+        "src": "/static/(.)",
         "dest": "/static/$1"
       },
       {
-        "src": "/(.*)",
+        "src": "/(.)",
         "dest": "irpybooksite/wsgi.py"
       }
     ]
