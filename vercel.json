@@ -1,27 +1,27 @@
 {
     "version": 2,
     "builds": [
-       {
-         "src": "irpybooksite/wsgi.py",
-         "use": "@vercel/python",
-         "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
-       },
-       {
-         "src": "build_files.sh",
-         "use": "@vercel/static-build-run",
-         "config": {
-           "distDir": ".vercel_build_output"
-         }
-       }
+      {
+        "src": "irpybooksite/wsgi.py",
+        "use": "@vercel/python",
+        "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
+      },
+      {
+        "src": "build_files.sh",
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": ".vercel_build_output" 
+        }
+      }
     ],
     "routes": [
-       {
-         "src": "/static/(.)",
-         "dest": "/static/$1"
-       },
-       {
-         "src": "/(.)",
-         "dest": "irpybooksite/wsgi.py"
-       }
+      {
+        "src": "/static/(.)",
+        "dest": "/static/$1"
+      },
+      {
+        "src": "/(.)",
+        "dest": "irpybooksite/wsgi.py"
+      }
     ]
-   }
+  }
