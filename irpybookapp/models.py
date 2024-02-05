@@ -6,7 +6,7 @@ class Livro(models.Model):
     titulo = models.CharField(max_length=255)
     autor = models.CharField(max_length=255)
     data = models.DateField(default=datetime.now)
-    sinopse = models.TextField(max_length=150)
+    sinopse = models.TextField(max_length=350)
     
     
     
