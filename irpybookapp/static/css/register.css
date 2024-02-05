@@ -8,8 +8,8 @@ body{
 }
 
 .main-container{
-    width: 900px;
-    height: 700px;
+    width: 800px;
+    height: 600px;
     display: flex;
     border: 5px inset rgba(50,83,242,0.81);
     border-top-right-radius: 40px;

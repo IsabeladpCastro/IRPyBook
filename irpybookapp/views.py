@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from .forms import CustomUserCreationForm
 from django.contrib import messages
 from datetime import datetime
 from django.http import HttpResponse, JsonResponse
@@ -32,7 +33,7 @@ def mainPage(request):
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
@@ -40,7 +41,7 @@ def register(request):
         else:
             messages.error(request, 'Erro no Registro')
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
         
     return render(request, 'register.html', {'form': form})
 

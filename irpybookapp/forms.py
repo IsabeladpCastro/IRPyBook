@@ -16,6 +16,7 @@ class CustomUserCreationForm(UserCreationForm):
             'password1': forms.PasswordInput(attrs={'placeholder': 'Digite sua senha'}),
             'password2': forms.PasswordInput(attrs={'placeholder': 'Digite novamente sua senha'}),
         }
+        
 class LivroForm(forms.ModelForm):
     class Meta:
         model = Livro

@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/register.css".css">
     <title>Registrar</title>
+    <link rel="shortcut icon" type="imagex/png" href="../static/img/IconLogo.png">
 </head>
 <body>
     <div class="main-container">
@@ -20,19 +21,18 @@
                 {% csrf_token %}
                 <div class="input-container">
                     <img class="icon" src="{% static 'img/user.png' %}" alt="username icon">
-                    {{ form.username }} 
+                    <input type="text" name="{{ form.username.name }}" placeholder="Digite seu nome de usuário">
                 </div>
                 <div class="input-container">
                     <img class="icon" src="{% static 'img/senha.png' %}" alt="password icon" width="60px">
-                    {{ form.password1 }} 
+                    <input type="password" name="{{ form.password1.name }}" placeholder="Digite uma senha">
                 </div>
                 <div class="input-container">
                     <img class="icon" src="{% static 'img/verificarIcon.png' %}" alt="password icon">
-                    {{ form.password2 }}
+                    <input type="password" name="{{ form.password2.name }}" placeholder="Digite novamente a sennha">
                 </div>
                 <button type="submit">Registrar</button>
             </form>
-            
         </div>
     </div>
 </body>
