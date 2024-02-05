@@ -23,7 +23,6 @@ def login_view(request):
             print(f'Sucesso ao entrar com {username}')
             return redirect('home')
         else:
-            messages.error(request, 'Nome de usuario ou senha incorretos.')
             print(f'Falha ao entrar com o {username}')
             
     return render(request, 'login.html')
@@ -37,7 +36,6 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            messages.success(request, 'Registro Bem-Sucedido')
             return redirect('home')
         else:
             messages.error(request, 'Erro no Registro')
@@ -60,7 +58,6 @@ def registerBook(request):
             return redirect('home')
         else:
             messages.error(request, 'Erro no registro do livro')
-            print('ta dando erro aqui oia', form.errors)
     else:  
         form = LivroForm()      
         
